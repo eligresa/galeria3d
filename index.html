@@ -11,6 +11,25 @@
       font-size: 2em;
 
     }
+
+    .galeria {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .zoomable {
+      width: 200px;
+      height: auto;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    /* Clase que se aplicará al hacer clic */
+    .zoomed {
+      transform: scale(2);
+      z-index: 10;
+    }
   </style>
   <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
 
@@ -18,7 +37,7 @@
 
 <body>
   <button id="volumen">🎼</button>
-  <a-scene cursor="rayOrigin:mouse" musica-fondo>
+  <a-scene cursor="rayOrigin:mouse">
     <a-asset>
       <video id="universo" autoplay loop="true" src="./asset/videos/universo.mp4"> </video>
       <img id="suelo" src="asset/imagenes/hands.jpg">
@@ -42,52 +61,61 @@
     <a-plane position="0 0 -5" rotation="-90 0 0" width="10" height="10" color="#ccc"></a-plane>
 
     <!-- Paredes -->
-    <a-plane position="-3 3.5 -10" rotation="0 0 0" width="2" height="2" color="#ccc"></a-plane>
-    <a-plane position="-0.2 2.5 -10" rotation="0 0 0" width="2" height="2" color="#ccc"></a-plane>
-    <a-plane position="2.5 3.5 -10" rotation="0 0 0" width="2" height="2" color="#ccc"></a-plane>
-    <a-plane position="-5 3.5 -8" rotation="0 90 0" width="2" height="2" color="#ccc"></a-plane>
-    <a-plane position="-5 2.5 -4.5" rotation="0 90 0" width="2" height="2" color="#ccc"></a-plane>
-    <a-plane position="-5 3.5 -1" rotation="0 90 0" width="2" height="2" color="#ccc"></a-plane>
-    <a-plane position="5.001 3.5 -9" rotation="0 -90 0" width="2" height="2" color="#ccc"></a-plane>
-    <a-plane position="5.001 2.5 -4.5" rotation="0 -90 0" width="2" height="2" color="#ccc"></a-plane>
-    <a-plane position="5.001 3.5 -1" rotation="0 -90 0" width="2" height="2" color="#ccc"></a-plane>
-    <a-plane position="-3 3.5 0.001" rotation="180 0 0" width="2" height="2" color="#ccc"></a-plane>
-    <a-plane position="-0.2 2.5 0.001" rotation="180 0 0" width="2" height="2" color="#ccc"></a-plane>
-    <a-plane position="2.5 3.5 0.001" rotation="180 0 0" width="2" height="2" color="#ccc"></a-plane>
 
 
 
 
-    <!-- Cuadrod pared frontal -->
+
+    <!-- Cuadro pared frontal -->
+
     <a-image position="0 0 -5" rotation="-90 0 0" width="10" height="10" src="#suelo"></a-image>
-    <a-image position="-3 3.5 -10" rotation="0 0 0" height="2" width="2" src="#cuadro2"></a-image>
-    <a-image position="-0.2 2.5 -10" rotation="0 0 0" height="2" width="2" src="#cuadro1"></a-image>
-    <a-image position="2.5 3.5 -10" rotation="0 0 0" height="2" width="2" src="#cuadro3"></a-image>
-    <a-image position="-5 3.5 -8" rotation="0 90 0" height="2" width="2" src="#cuadro4"></a-image>
-    <a-image position="-5 2.5 -4.5" rotation="0 90 0" height="2" width="2" src="#cuadro5"></a-image>
-    <a-image position="-5 3.5 -1" rotation="0 90 0" height="2" width="2" src="#cuadro6"></a-image>
-    <a-image position="5 3.5 -9" rotation="0 90 0" height="2" width="2" src="#cuadro7"></a-image>
-    <a-image position="5 2.5 -4.5" rotation="0 90 0" height="2" width="2" src="#cuadro8"></a-image>
-    <a-image position="5 3.5 -1" rotation="0 90 0" height="2" width="2" src="#cuadro9"></a-image>
-    <a-image position="-3 3.5 0" rotation="0 0 0" height="2" width="2" src="#cuadro10"></a-image>
-    <a-image position="-0.2 2.5 0" rotation="0 0 0" height="2" width="2" src="#cuadro11"></a-image>
-    <a-image position="2.5 3.5 0" rotation="0 0 0" height="2" width="2" src="#cuadro12"></a-image>
+    <a-image toggle-scale position="-3 3.5 -10" rotation="0 0 0" height="2" width="2" src="#cuadro2"></a-image>
+    <a-image toggle-scale position="-0.2 2.5 -10" rotation="0 0 0" height="2" width="2" src="#cuadro1"
+      ></a-image>
+    <a-image toggle-scale position="2.5 3.5 -10" rotation="0 0 0" height="2" width="2" src="#cuadro3"></a-image>
+    <a-image toggle-scale position="-5 3.5 -8" rotation="0 90 0" height="2" width="2" src="#cuadro4"></a-image>
+    <a-image toggle-scale position="-5 2.5 -4.5" rotation="0 90 0" height="2" width="2" src="#cuadro5"></a-image>
+    <a-image toggle-scale position="-5 3.5 -1" rotation="0 90 0" height="2" width="2" src="#cuadro6"></a-image>
+    <a-image toggle-scale position="5 3.5 -9" rotation="0 90 0" height="2" width="2" src="#cuadro7"></a-image>
+    <a-image toggle-scale position="5 2.5 -4.5" rotation="0 90 0" height="2" width="2" src="#cuadro8"></a-image>
+    <a-image toggle-scale position="5 3.5 -1" rotation="0 90 0" height="2" width="2" src="#cuadro9"></a-image>
+    <a-image toggle-scale position="-3 3.5 0" rotation="0 0 0" height="2" width="2" src="#cuadro10"></a-image>
+    <a-image toggle-scale position="-0.2 2.5 0" rotation="0 0 0" height="2" width="2" src="#cuadro11"></a-image>
+    <a-image toggle-scale position="2.5 3.5 0" rotation="0 0 0" height="2" width="2" src="#cuadro12"></a-image>
+    
 
     <!-- fondo -->
     <a-videosphere src="#universo"></a-videosphere>
 
     <!-- camara position -->
-    <a-camera position="0 1.6 -5" look controls>
-      <a-cursor color="green" scale="10 10 10 " visible="false"></a-cursor>
+    <a-camera id="camara" position="0 1.6 -5" look controls>
+
     </a-camera>
-    <!-- button para audio -->
+
 
   </a-scene>
   <script>
 
-    document.getElementById('volumen').addEventListener('click',function(){
-       document.getElementById('musica').play()
+    document.getElementById('volumen').addEventListener('click', function () {
+      document.getElementById('musica').play()
     })
+    
+    AFRAME.registerComponent('toggle-scale', {
+      schema: {
+        normal: { type: 'vec3', default: { x: 1, y: 1, z: 1 } },
+        grande: { type: 'vec3', default: { x: 2, y: 2, z: 2 } }
+      },
+      init: function () {
+        console.log('hola')
+        const el = this.el;
+        this.isGrande = false;
+        el.addEventListener('click', () => {
+          this.isGrande = !this.isGrande;
+          const scale = this.isGrande ? this.data.grande : this.data.normal;
+          el.setAttribute('scale', scale);
+        });
+      }
+    });
 
   </script>
 
