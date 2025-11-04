@@ -23,10 +23,9 @@
       <img id="cuadro10" src="asset/imagenes/ballena-varada.jpg">
       <img id="cuadro11" src="asset/imagenes/cadaver.jpg">
       <img id="cuadro12" src="asset/imagenes/la-muerte.jpg">
-      <!-- <audio src="asset/sonidos/musica-ambiente.mp3" autoplay="true" loop></audio> -->
 
     </a-asset>
-    <a-sound src="asset/sonidos/musica-ambiente.mp3"autoplay="true"></a-sound>
+    <a-sound id="sonido" src="asset/sonidos/musica-ambiente.mp3" autoplay="true"></a-sound>
     <!-- Suelo -->
     <a-plane position="0 0 -5" rotation="-90 0 0" width="10" height="10" color="#ccc"></a-plane>
 
@@ -66,11 +65,19 @@
     <a-videosphere src="#universo"></a-videosphere>
 
     <!-- camara position -->
-     <a-camera position="0 1.6 -5"></a-camera>
-  <!-- button para audio -->
-   
+    <a-camera position="0 1.6 -5"></a-camera>
+    <!-- button para audio -->
 
   </a-scene>
+  <script>
+
+    window.onload = function () {
+      const sound = document.getElementById('sonido');
+      sound.play()
+
+    }
+    // document.querySelector(" # universo ").components.material.material.map.image.play();
+  </script>
 
 </body>
 
