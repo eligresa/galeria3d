@@ -2,11 +2,20 @@
 <html lang="en">
 
 <head>
+  <style>
+    #volumen{
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+    }
+  </style>
   <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
 
 </head>
 
 <body>
+  <button id="volumen">Musica</button>
   <a-scene cursor="rayOrigin:mouse" musica-fondo>
     <a-asset>
       <video id="universo" autoplay loop="true" src="./asset/videos/universo.mp4" > </video>
