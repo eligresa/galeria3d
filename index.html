@@ -67,20 +67,13 @@
 
     <!-- camara position -->
     <a-camera position="0 1.6 -5" look controls>
-      <a-cursor color="green" scale="2 2 2" visible="false"></a-cursor>
+      <a-cursor color="green" scale="10 10 10 " visible="false"></a-cursor>
     </a-camera>
     <!-- button para audio -->
 
   </a-scene>
   <script>
-    AFRAME.registerComponent('accion-tras-click', {
-      init: function () {
-        this.el.addEventListener('click', function () {
-          event.target.setAttribute("visible", "false")
-
-        })
-      }
-    })
+    
     AFRAME.registerComponent('musica-fondo', {
       init: function () {
         setTimeout(() => {
