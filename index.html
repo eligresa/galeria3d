@@ -7,7 +7,7 @@
 </head>
 
 <body>
-  <a-scene>
+  <a-scene cursor="rayOrigin:mouse" musica-fondo>
     <a-asset>
       <video id="universo" autoplay loop="true" src="asset/videos/universo.mp4"> </video>
       <img id="suelo" src="asset/imagenes/hands.jpg">
@@ -23,9 +23,10 @@
       <img id="cuadro10" src="asset/imagenes/ballena-varada.jpg">
       <img id="cuadro11" src="asset/imagenes/cadaver.jpg">
       <img id="cuadro12" src="asset/imagenes/la-muerte.jpg">
+      <audio id="musica" src="asset/sonidos/musica-ambiente.mp3"></audio>
 
     </a-asset>
-    <a-sound id="sonido" src="asset/sonidos/musica-ambiente.mp3" autoplay="true"></a-sound>
+
     <!-- Suelo -->
     <a-plane position="0 0 -5" rotation="-90 0 0" width="10" height="10" color="#ccc"></a-plane>
 
@@ -65,18 +66,30 @@
     <a-videosphere src="#universo"></a-videosphere>
 
     <!-- camara position -->
-    <a-camera position="0 1.6 -5"></a-camera>
+    <a-camera position="0 1.6 -5" look controls>
+      <a-cursor color="green" scale="2 2 2" visible="false"></a-cursor>
+    </a-camera>
     <!-- button para audio -->
 
   </a-scene>
   <script>
+    AFRAME.registerComponent('accion-tras-click', {
+      init: function () {
+        this.el.addEventListener('click', function () {
+          event.target.setAttribute("visible", "false")
 
-    window.onload = function () {
-      const sound = document.getElementById('sonido');
-      sound.play()
+        })
+      }
+    })
+    AFRAME.registerComponent('musica-fondo', {
+      init: function () {
+        setTimeout(() => {
+          document.getElementById('musica').play()
+        }, 2000)
+      }
+    })
 
-    }
-    // document.querySelector(" # universo ").components.material.material.map.image.play();
+
   </script>
 
 </body>
