@@ -12,6 +12,15 @@
 
     }
 
+    #playBtn {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      font-size: 2em;
+    }
+
+
     .galeria {
       display: flex;
       gap: 10px;
@@ -37,9 +46,10 @@
 
 <body>
   <button id="volumen">🎼</button>
+  <button id="playBtn">▶️</button>
   <a-scene cursor="rayOrigin:mouse">
     <a-asset>
-      <video id="universo" autoplay loop="true" src="./asset/videos/universo.mp4"> </video>
+      <video id="universo" loop muted playsinline crossorigin="anonymous" src="./asset/videos/universo.mp4"> </video>
       <img id="suelo" src="asset/imagenes/hands.jpg">
       <img id="cuadro1" src="asset/imagenes/tierra.jpg">
       <img id="cuadro2" src="asset/imagenes/planets.jpg">
@@ -70,8 +80,7 @@
 
     <a-image position="0 0 -5" rotation="-90 0 0" width="10" height="10" src="#suelo"></a-image>
     <a-image toggle-scale position="-3 3.5 -10" rotation="0 0 0" height="2" width="2" src="#cuadro2"></a-image>
-    <a-image toggle-scale position="-0.2 2.5 -10" rotation="0 0 0" height="2" width="2" src="#cuadro1"
-      ></a-image>
+    <a-image toggle-scale position="-0.2 2.5 -10" rotation="0 0 0" height="2" width="2" src="#cuadro1"></a-image>
     <a-image toggle-scale position="2.5 3.5 -10" rotation="0 0 0" height="2" width="2" src="#cuadro3"></a-image>
     <a-image toggle-scale position="-5 3.5 -8" rotation="0 90 0" height="2" width="2" src="#cuadro4"></a-image>
     <a-image toggle-scale position="-5 2.5 -4.5" rotation="0 90 0" height="2" width="2" src="#cuadro5"></a-image>
@@ -82,10 +91,12 @@
     <a-image toggle-scale position="-3 3.5 0" rotation="0 0 0" height="2" width="2" src="#cuadro10"></a-image>
     <a-image toggle-scale position="-0.2 2.5 0" rotation="0 0 0" height="2" width="2" src="#cuadro11"></a-image>
     <a-image toggle-scale position="2.5 3.5 0" rotation="0 0 0" height="2" width="2" src="#cuadro12"></a-image>
-    
+
 
     <!-- fondo -->
-    <a-videosphere src="#universo"></a-videosphere>
+
+    <a-videosphere src="#universo" rotation="0 -90 0"></a-videosphere>
+
 
     <!-- camara position -->
     <a-camera id="camara" position="0 1.6 -5" look controls>
@@ -99,7 +110,7 @@
     document.getElementById('volumen').addEventListener('click', function () {
       document.getElementById('musica').play()
     })
-    
+
     AFRAME.registerComponent('toggle-scale', {
       schema: {
         normal: { type: 'vec3', default: { x: 1, y: 1, z: 1 } },
@@ -115,6 +126,10 @@
           el.setAttribute('scale', scale);
         });
       }
+    });
+    document.querySelector('#playBtn').addEventListener('click', () => {
+      const vid = document.querySelector('#universo');
+      vid.play();
     });
 
   </script>
